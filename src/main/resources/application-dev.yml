@@ -1,0 +1,7 @@
+server:
+  port: 80
+
+shiro:
+  loginUrl: /login.html
+  successUrl: /index.html
+  unauthorizedUrl: /unauthorized.html
