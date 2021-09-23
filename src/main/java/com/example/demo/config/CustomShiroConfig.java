@@ -25,7 +25,7 @@ public class CustomShiroConfig {
         return new UrlPermAccessControlFilter();
     }
 
-    @Bean
+    //@Bean
     SessionDAO sessionDAO() {
         return new CustomSessionDao();
     }

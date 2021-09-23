@@ -17,11 +17,13 @@ import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 import org.apache.shiro.session.mgt.eis.MemorySessionDAO;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 /**
  * 自定义sessionDao，实现分布式session
  */
+@Component
 public class CustomSessionDao extends AbstractSessionDAO {
     static final String PRINCIPALS_SESSION_KEY = "org.apache.shiro.subject.support.DefaultSubjectContext_PRINCIPALS_SESSION_KEY";
 
@@ -84,6 +86,11 @@ public class CustomSessionDao extends AbstractSessionDAO {
         return  reamlMapPricipals;
     }
 
+    /**
+     * 更新权限信息
+     * @param sessionId
+     * @param authorizationInfo
+     */
     public static void updateAuthorizationInfo(String sessionId, SimpleAuthorizationInfo authorizationInfo) {
         CustomSimpleSession customSimpleSession = SessionUtils.getCustomSession(sessionId.toString());
         customSimpleSession.getRealmMapPrincipals().values().stream().findFirst().get().get(0).setAuthorizationInfo(authorizationInfo);
